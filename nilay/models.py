@@ -3,11 +3,13 @@ from django.db import models
 from django.utils import timezone
 
 
+
+
 class Flat(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     text = models.TextField()
-    image = models.ImageField(upload_to='images')
+    
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
 
@@ -17,3 +19,10 @@ class Flat(models.Model):
 
     def __str__(self):
         return self.title
+
+class FlatImage(models.Model):
+    property = models.ForeignKey(Flat, default=None, on_delete=models.CASCADE)
+    images = models.FileField(upload_to = 'images/')
+ 
+    def __str__(self):
+        return self.property.title

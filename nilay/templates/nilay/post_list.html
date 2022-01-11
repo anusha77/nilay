@@ -1,0 +1,23 @@
+{% extends 'nilay/base.html' %}
+ 
+{% block content %}
+<div class="row row-cols-1 row-cols-md-2">
+    {% for flat in flats %}
+    <div class="col mb-4">
+      <div class="card">
+        <div class="view overlay">
+          <img class="card-img-top" src="{{flat.image.url}}" alt="">
+          <a href="#!">
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">{{flat.title}}</h4>
+          <p class="card-text">{{flat.text}}</p>
+          <a href="{% url 'detail' flat.id %}" class="btn btn-primary btn-md">Images</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% endblock %}
